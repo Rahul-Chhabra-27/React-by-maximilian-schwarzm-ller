@@ -1,0 +1,33 @@
+ (A).In functional component (react hooks) 
+    const [personState,setpersonState] = useState({
+      person:[
+            { name : "Max", age: "28" },
+            { name : "manu" ,age : "29" },
+            { name : "Rahul" , age:"20" }      
+      ],
+      university:"Anand University"
+    });
+    const nameChangeHandler = () => {
+         setpersonState({
+            person:[
+                { name : "Maximilian", age: "28" },
+                { name : "manu" ,age : "29" },
+                { name : "Rahul" , age:"20" }      
+         ],
+         });
+    }
+    1. In this statement personState contains the initial state with person array of object
+    and university.
+    2. After set the setpersonState the initail state(personState) only contains person array
+     and university get vanisahed, because in useState I only changing person array and in 
+     react hooks new state is not override with old state,it get replaced with old state. 
+
+ (B). In class component new state override with old state.
+
+ (C). stateless component is a component which do not manages state(not using state,setState,hooks) inside it.
+   also called as containers, statefull,smart component.
+   
+ (D). statelfull component is a component which manages state( using state,setState,hooks ) inside it.
+    also called dumb,presentational,stateless component. 
+ (E). can pass methods of one component to another component through props.  
+     

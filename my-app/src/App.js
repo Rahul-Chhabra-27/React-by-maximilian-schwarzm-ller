@@ -11,37 +11,45 @@ class App extends Component{
     ],
     university:"Anand University"
   }
-  nameChangeHandler = () => {
+  nameChangeHandler = (newName) => {   // setState handler
    this.setState({
      person:[
-       { name:"Maximilian",age:"28" },
+       { name:newName,age:"28" },
        { name:"Manu", age : "29" },
        { name : "RahulChhabra" ,age:"20" }
      ]
    });
   }
+  namePassingHanlder = event => {
+    console.log(event.target.value)
+     this.setState({
+      person:[
+        { name:'max',age:"28" },
+        { name:event.target.value, age : "29" },
+        { name : "RahulChhabra" ,age:"20" }
+      ]
+     });
+  }
   render(){
     return(
       <div className="App">
          <h1>I'm React App</h1>
-         <button onClick={this.nameChangeHandler}>Click me</button>
-         <Person name={this.state.person[0].name} age={this.state.person[0].age}></Person>
-         <Person name={this.state.person[1].name} age={this.state.person[1].age}> Harvard university</Person>
-         <Person name={this.state.person[2].name} age={this.state.person[2].age}>{this.state.university}</Person>
+         {console.log(this.state)}
+         <button onClick={() => this.nameChangeHandler('Maximilian!!')}>Click me</button>
+         <Person
+           name={this.state.person[0].name}
+           age={this.state.person[0].age} />
+         <Person 
+           name={this.state.person[1].name} 
+           age={this.state.person[1].age} 
+           click ={this.nameChangeHandler.bind(this,'max')}
+           changed = {this.namePassingHanlder}> Harvard university</Person>
+           
+         <Person
+           name={this.state.person[2].name} 
+           age={this.state.person[2].age}>{this.state.university}</Person>
       </div>
     )
   }
 }
-// function App() { // working with props
-//   const university = "anand university";
-//   return (
-//     <div className="App">
-//        <h1>I'm React App</h1>
-//        <Person name="Max" age="28"></Person>
-//        <Person name="Manu" age="29"> Harvard university</Person>
-//        <Person name="Rahul" age="20" >{university}</Person>
-//     </div>
-//   );
-// }
-
 export default App;
