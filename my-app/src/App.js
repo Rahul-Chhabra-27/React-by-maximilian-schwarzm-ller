@@ -44,7 +44,6 @@ class App extends Component{
            age={this.state.person[1].age} 
            click ={this.nameChangeHandler.bind(this,'max')}
            changed = {this.namePassingHanlder}> Harvard university</Person>
-           
          <Person
            name={this.state.person[2].name} 
            age={this.state.person[2].age}>{this.state.university}</Person>
