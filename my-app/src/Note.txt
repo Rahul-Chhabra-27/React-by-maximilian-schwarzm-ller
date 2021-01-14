@@ -29,5 +29,6 @@
    
  (D). statelfull component is a component which manages state( using state,setState,hooks ) inside it.
     also called dumb,presentational,stateless component. 
- (E). can pass methods of one component to another component through props.  
+ (E). can pass methods of one component to another component through props. 
+ (F). change state immutily by using ...(spread operator); 
      

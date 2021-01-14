@@ -1,23 +1,30 @@
 import React, { Component} from 'react';
 import Person from './Person'
+import Data from './Data';
 
 class Prtc extends Component{
  state = {
-      person : [
-          { id :  "afa",name:"max",age:"28"},
-          { id : "jgkcs ",name:"mannu",age:"29"},
-          { id : "mdbvksd", name:"smith",age:"20"}
-      ],
+      person : Data,
       updated : true
   }
-    nameChangeHandler = event =>{
+    createNewPerson = event =>{
         const name = "gary";
-        const age = "23";
-        const new_array = this.state.person;
-        new_array.push({name,age})
+        const id = "23";
+        const new_array = [...this.state.person];
+        new_array.push({name,id});
+        console.log(this.state.person);
            this.setState({
              person:new_array
            })
+   }
+   nameChangeHandler = (event,id) =>{
+     const personIndex = this.state.person.findIndex((person) => person.id === id);
+     const updated_person = {...this.state.person[personIndex]};
+     updated_person.name = event.target.value;
+     const persons = [...this.state.person];
+     persons[personIndex] = updated_person;
+     console.log(updated_person.name)
+     this.setState({person:persons});
    }
 
    deleteChangeHandler = (personIndex) => {
@@ -49,12 +56,14 @@ class Prtc extends Component{
             <h1>Hello I'm React app</h1>
             <h1>enjoying working with react</h1>
             {this.state.person.map((person,index) =>
-              <Person click = {() =>this.deleteChangeHandler(index)}
+               <Person
+               click = {() =>this.deleteChangeHandler(index)}
                name={person.name}
                age={person.age}
+               changed = {(event) =>this.nameChangeHandler(event,person.id)}
                key={person.id}/>)
                }
-            <button onClick={this.nameChangeHandler}>click me</button>
+            <button onClick={this.createNewPerson}>click me</button>
         </div>
     )
    }

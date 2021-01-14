@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 // import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Prtc from './prtc/Prtc'
+import Prtc2 from './prtc/Prtc2'
+// import Index from './Practice/index'
 
 ReactDOM.render(
   <React.StrictMode>
-   <Prtc/>
+   <Prtc2 appTitle="Person Manger" />
   </React.StrictMode>,
   document.getElementById('root')
 );
