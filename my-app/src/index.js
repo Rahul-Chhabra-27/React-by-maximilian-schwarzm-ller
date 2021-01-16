@@ -5,6 +5,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Prtc2 from './prtc/Prtc2'
 // import Index from './Practice/index'
+// import App from './prtc/prtc3';
 
 ReactDOM.render(
   <React.StrictMode>

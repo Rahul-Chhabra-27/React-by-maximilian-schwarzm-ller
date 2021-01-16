@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Radium from 'radium'
 const Cockpit = ( props ) => {
+    
+    useEffect(() => {
+        console.log('[Cockpit.jsx] ');
+    })
     let classes = [];
         if(props.persons.length === 3){
             classes.push('blue');

@@ -1,12 +1,13 @@
 import React,{Component} from 'react';
 import Data from './Data';
-import Person from '../components/persons/Person';
+import Person from '../components/persons/Persons';
 import './Index.css';
 import Radium from 'radium';
 import Cockpit from '../components/Cockpits/cockpit'
 class Prtc2 extends Component{
     constructor( props ){
         super( props );
+        console.log('Componet Creation Lifecycle begins');
         console.log('[Prtc.jsx] constructor');
     }
     state = {
@@ -20,6 +21,19 @@ class Prtc2 extends Component{
         console.log( '[Prtc.jsx] getDerivedFromProps', props );
         return state;
     }
+    shouldComponentUpdate(){
+        console.log('[Prrc2.jsx] shouldComponetUpdate');
+        return true;
+    }
+    getSnapshotBeforeUpdate(prevProps,prevState){
+        console.log('[Prtc2.jsx] getSnapshotBeforeUpdate');
+        return {message:"stateChanged"};
+    }
+    componentDidUpdate(prevProps,prevState,snapshot){
+        console.log('[Prtc2.jsx] componentDidUpdate',prevState);
+        console.log(snapshot);
+    }
+    // it is used for sending http request to web.
     componentDidMount(){
         console.log('[Prtc.jsx] ComponentDidMount');
     }
@@ -47,7 +61,7 @@ class Prtc2 extends Component{
         this.setState({isValid:!prev});
     }
     render(){
-        console.log( 'render')
+        console.log( '[Prtc2.js] render')
         const style = {
             backgroundColor : 'green',
             color:"white",
@@ -72,13 +86,10 @@ class Prtc2 extends Component{
                 backgroundColor:"purple",
                 color:"black"
             }
-           var a = <Cockpit persons = {this.state.persons} 
-                 toggleperson = {this.toggleperson}
-                 style = {style} />
-                 console.log(a);
         }
         return(
             <div className="App">
+                {console.log("wdcwd")}
                  <Cockpit
                   title={this.props.appTitle}
                   persons = {this.state.persons} 

@@ -1,18 +1,15 @@
 import React from 'react'
 
-const  Person = props => { 
-    const another = () => {
-        console.log("!!triggered");
+class Person extends React.Component { 
+    render(){
+        console.log('[person.js] rendering...');      // working with props
+        return (
+            <div>
+              <p onClick={this.props.click}>I'm {this.props.name} and my age is {this.props.age}</p>
+              <p>{this.props.children}</p>
+              <input type = "text" onChange={this.props.changed} value={this.props.name}/>
+           </div> 
+        );
     } 
-    
-    console.log('person component');      // working with props
-    return (
-        <div>
-            {another()}
-          <p onClick={props.click}>I'm {props.name} and my age is {props.age}</p>
-          <p>{props.children}</p>
-          <input type = "text" onChange={props.changed} value={props.name}/>
-       </div> 
-    );
 };
 export default Person;
