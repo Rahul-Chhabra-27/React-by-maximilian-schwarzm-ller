@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Person from './Person copy';
 
-const Method = ( props ) => {
-    
-    return props.persons.map((person) => <Person id = {person.id} 
-    key = {person.id} age={person.age}
-    click = {() => props.deleteComponentHanlder(person.id)}
-    name = {person.name} />);
-    
+class Method extends React.Component { // props count recieve
+
+   render(){
+       console.log("[Method.js] render");
+    return(
+        <div>
+        <h2>{this.props.count}</h2>
+        <button onClick= {this.props.click}>Click me</button>
+    </div>
+    )    
+   }
 }
 export default Method;

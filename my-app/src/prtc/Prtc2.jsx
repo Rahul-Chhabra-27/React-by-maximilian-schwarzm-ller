@@ -4,7 +4,11 @@ import Person from '../components/persons/Persons';
 import './Index.css';
 import Radium from 'radium';
 import Cockpit from '../components/Cockpits/cockpit'
+import withClass from '../hoc/WithClass';
+import Aux from '../hoc/Auxiliary';
+
 class Prtc2 extends Component{
+    //  1.component creation lifecycle.
     constructor( props ){
         super( props );
         console.log('Componet Creation Lifecycle begins');
@@ -12,7 +16,10 @@ class Prtc2 extends Component{
     }
     state = {
         persons:Data,
-        isValid:false
+        isValid:true,
+        showCockpit:true,
+        show:true,
+        check:true,
     }
     componentWillUnmount(){
         console.log('[Prtc.jsx] componentWllMount ');
@@ -22,7 +29,7 @@ class Prtc2 extends Component{
         return state;
     }
     shouldComponentUpdate(){
-        console.log('[Prrc2.jsx] shouldComponetUpdate');
+        console.log('[Prtc2.jsx] shouldComponetUpdate');
         return true;
     }
     getSnapshotBeforeUpdate(prevProps,prevState){
@@ -34,6 +41,7 @@ class Prtc2 extends Component{
         console.log(snapshot);
     }
     // it is used for sending http request to web.
+    //  component creation lifecycle.
     componentDidMount(){
         console.log('[Prtc.jsx] ComponentDidMount');
     }
@@ -45,8 +53,7 @@ class Prtc2 extends Component{
        this.setState({persons:persons});
     }
     nameChangeHandler = (event,id) => {
-        const personIndex = this.state.persons.findIndex(p => {
-            return p.id === id});
+        const personIndex = this.state.persons.findIndex( p =>  p.id === id );
         const person = {...this.state.persons[personIndex]};
         person.name = event.target.value;
         const persons = [...this.state.persons];
@@ -62,42 +69,32 @@ class Prtc2 extends Component{
     }
     render(){
         console.log( '[Prtc2.js] render')
-        const style = {
-            backgroundColor : 'green',
-            color:"white",
-            font : 'inherit',
-            border: '1px solid blue',
-            padding:'8px',
-            cursor : 'pointer',
-            ':hover':{
-                backgroundColor:'lightgreen',
-                color:"red"
-            },
-        }
+       
         let person = null;
         if(this.state.isValid){
             person = <Person 
               data = {this.state.persons}
               changed = {this.nameChangeHandler}
               delete = {this.deleteComponent} />
-
-            style.backgroundColor="red";
-            style[':hover'] = {
-                backgroundColor:"purple",
-                color:"black"
-            }
         }
         return(
-            <div className="App">
-                {console.log("wdcwd")}
-                 <Cockpit
+          <Aux>
+                <button onClick={() => this.setState({showCockpit:false})}>Cockpit</button>
+                { this.state.showCockpit?<Cockpit
                   title={this.props.appTitle}
-                  persons = {this.state.persons} 
+                  personsLength = {this.state.persons.length} 
                   toggleperson = {this.toggleperson}
-                  style = {style} />
+                  />:null}
                  {person}
-           </div>     
+          </Aux>   
         )
     }
 }
-export default Radium(Prtc2);
+const App = withClass(Prtc2,"App");
+export default App;
+
+// component creation.
+// start --> constructor --> getDerivedStateFromProps --> render --> child component --> componentDidMount.
+// state changes.
+// start -->  getDerivedStateFromProps --> componentShouldUpdate --> render --> child component --> 
+//  getSnapshotBeforeUpdate  --> componentDidupdate.

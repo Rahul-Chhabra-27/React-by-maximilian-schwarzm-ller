@@ -6,10 +6,13 @@ import reportWebVitals from './reportWebVitals';
 import Prtc2 from './prtc/Prtc2'
 // import Index from './Practice/index'
 // import App from './prtc/prtc3';
+// import Method from './Practice/Method';
 
 ReactDOM.render(
   <React.StrictMode>
    <Prtc2 appTitle="Person Manger" />
+   {/* <Index></Index> */}
+   {/* <Method></Method> */}
   </React.StrictMode>,
   document.getElementById('root')
 );

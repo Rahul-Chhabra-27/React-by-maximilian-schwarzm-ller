@@ -47,3 +47,6 @@
 
     IMP.
    (J) when the props and state of the component changes then the component re render itself.
+    (K). In state component.
+    (a)  props change --> component rerender.
+    (b)  state change -->  parent component rerender --> child component rerender .

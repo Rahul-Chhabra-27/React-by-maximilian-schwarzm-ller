@@ -1,31 +1,30 @@
 import React, { Component } from 'react';
-import Data from '../prtc/Data';
-import Person from './Person copy';
-import '../prtc/Index.css';
-import Method from './Method'
+import Method from './Method';
 class Index extends Component{
     
-    state  = {
-        persons:Data,
-        showPerson:true,
+    state = {
+        count:1,
     }
-    deleteComponentHanlder = ( id ) => {
-        const persons = [...this.state.persons];
-        const personIndex = persons.findIndex( person => person.id === id);
-        persons.splice( personIndex,1 );
-        this.setState({  persons:persons  });
+    IncrCount = () => {
+        console.log(this);
+        let count = this.state.count+1;
+        this.setState({count:count});;
+    }
+    click(){
+        console.log(this);
     }
     render(){
-       const persons = < Method persons = {this.state.persons} 
-       deleteComponentHanlder={this.deleteComponentHanlder}
-        / >
-       return (
-           <div className="App">
-                <h1> Person manager </h1>
-                { persons }
-           </div>
-       )
-
+    return (
+    <div>
+        <button onClick={() => this.click()}> click button</button>
+    <h2>{this.state.count}</h2>
+    <button onClick={this.IncrCount}>Click me</button>
+</div>
+    )
     }
+    
 }
 export default Index;
+
+// 1. component creation lifecycle.
+// 2.component update lifecycle.
