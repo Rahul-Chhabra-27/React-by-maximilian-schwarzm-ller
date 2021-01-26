@@ -6,6 +6,7 @@ import Radium from 'radium';
 import Cockpit from '../components/Cockpits/cockpit'
 import withClass from '../hoc/WithClass';
 import Aux from '../hoc/Auxiliary';
+import PropType from 'prop-types';
 
 class Prtc2 extends Component{
     //  1.component creation lifecycle.
@@ -20,6 +21,7 @@ class Prtc2 extends Component{
         showCockpit:true,
         show:true,
         check:true,
+        changeCounter:0,
     }
     componentWillUnmount(){
         console.log('[Prtc.jsx] componentWllMount ');
@@ -59,9 +61,13 @@ class Prtc2 extends Component{
         const persons = [...this.state.persons];
         persons[personIndex] = person;
         // console.log(this.state.persons[personIndex].name);
-        this.setState({
-            persons:persons,
-        })
+        this.setState((prevState,props) => {
+            return {
+                persons:persons,
+                changeCounter:prevState.changeCounter + 1,
+            };
+
+        });       
     }
     toggleperson = () => {
         const prev = this.state.isValid;

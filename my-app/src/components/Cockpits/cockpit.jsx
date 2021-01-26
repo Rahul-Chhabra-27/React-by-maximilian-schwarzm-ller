@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 
 const Cockpit = ( props ) => {
-    const style = {
+    const toggleBtn = useRef(null);
+    
+        const style = {
         backgroundColor : 'green',
         color:"white",
         font : 'inherit',
@@ -15,7 +17,7 @@ const Cockpit = ( props ) => {
         },
     }
    useEffect(() => {
-       console.log("cockpit useEffect");
+       toggleBtn.current.click(); 
        return () => console.log('clean up work in useEffect');
    },[]);
    useEffect(() => {
@@ -36,7 +38,7 @@ const Cockpit = ( props ) => {
 
         <h1 className={classes.join(' ')}>Hii I'm a React app!!</h1>
         <h1>{props.title}</h1>
-        <button style={style} onClick={props.toggleperson}>Toggle Person</button>
+        <button ref={toggleBtn} style={style} onClick={props.toggleperson}>Toggle Person</button>
 
     </div>
     )
